@@ -26,7 +26,7 @@ fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data
 scatter!(vec(x), vec(ŷ_underfit), label = "prediction (5 iterations)");
 scatter!(vec(x), vec(ŷ), label = "prediction (50 iterations)");
 scatter!(vec(x), vec(ŷ_overfit), label = "prediction (1000 iterations)");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
 
@@ -46,19 +46,15 @@ ŷ_linreg = fitted_linreg(x)
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
 scatter!(vec(x), vec(ŷ_linreg), label = "$max_iterations iterations");
 scatter!(vec(x), vec(ŷ_ex22_50iter), label = "50 iterations");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
 
 # 3.3. The impact of the NN size
 
 nn = MLPDomain(1, (32, tanh), (32, tanh), (1, identity); bias = true)
-fitted_nn = fit(
-    nn, 
-    target; 
-    optim_alg = DeepPumas.BFGS(), 
-    optim_options = (; iterations = 1_000)
-)
+fitted_nn =
+    fit(nn, target; optim_alg = DeepPumas.BFGS(), optim_options = (; iterations = 1_000))
 
 ŷ = fitted_nn(x)
 

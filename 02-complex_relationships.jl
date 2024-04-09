@@ -16,7 +16,7 @@ x = rand(uniform, 1, num_samples)
 y = true_function.(x) + σ * ϵ
 
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
 
@@ -31,7 +31,7 @@ ŷ_ex22_50iter = fitted_linreg(x)
 
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
 scatter!(vec(x), vec(ŷ_ex22_50iter); label = "prediction");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
 
@@ -46,6 +46,6 @@ ŷ = fitted_nn(x)
 
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
 scatter!(vec(x), vec(ŷ), label = "prediction");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
