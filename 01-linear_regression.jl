@@ -24,8 +24,8 @@ x = rand(uniform, 1, num_samples)  # samples stored columnwise
 y = true_function.(x) + σ * ϵ
 
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
-lines!(-1..1, true_function; color = :gray, label = "true");
-axislegend(; position=:rb);
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
+axislegend(; position = :rb);
 fig
 
 # 1.2. Model `true_function` with a linear regression model
@@ -41,6 +41,6 @@ ŷ = fitted_linreg(x)
 
 fig = scatter(vec(x), vec(y); axis = (xlabel = "x", ylabel = "y"), label = "data");
 scatter!(vec(x), vec(ŷ); label = "prediction");
-lines!(-1..1, true_function; color = :gray, label = "true");
-axislegend(; position=:rb);
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
+axislegend(; position = :rb);
 fig

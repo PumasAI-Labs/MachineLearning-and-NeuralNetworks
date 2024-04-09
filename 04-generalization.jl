@@ -20,9 +20,14 @@ x_valid = rand(uniform, 1, num_samples)
 y_valid = true_function.(x_valid) + σ * ϵ_valid
 target_valid = preprocess(x_valid, y_valid)
 
-fig = scatter(vec(x_train), vec(y_train); axis = (xlabel = "x", ylabel = "y"), label = "training data");
+fig = scatter(
+    vec(x_train),
+    vec(y_train);
+    axis = (xlabel = "x", ylabel = "y"),
+    label = "training data",
+);
 scatter!(vec(x_valid), vec(y_valid); label = "validation data");
-lines!(-1..1, true_function; color = :gray, label = "true");
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
 axislegend();
 fig
 
@@ -30,12 +35,8 @@ fig
 
 loss_train_l, loss_valid_l = [], []
 
-fitted_nn = fit(
-    nn,
-    target_train;
-    optim_alg = DeepPumas.BFGS(),
-    optim_options = (; iterations = 10),
-)
+fitted_nn =
+    fit(nn, target_train; optim_alg = DeepPumas.BFGS(), optim_options = (; iterations = 10))
 push!(loss_train_l, sum((fitted_nn(x_train) .- y_train) .^ 2))
 push!(loss_valid_l, sum((fitted_nn(x_valid) .- y_valid) .^ 2))
 
@@ -112,6 +113,6 @@ ŷ_ho = nn_ho(x_valid)
 
 fig = scatter(vec(x_valid), vec(y_valid); label = "validation data");
 scatter!(vec(x_valid), vec(ŷ_ho), label = "prediction (hyperparam opt.)");
-lines!(-1..1, true_function; color = :gray, label = "true");
-axislegend(; position=:ct);
+lines!(-1 .. 1, true_function; color = :gray, label = "true");
+axislegend(; position = :ct);
 fig
